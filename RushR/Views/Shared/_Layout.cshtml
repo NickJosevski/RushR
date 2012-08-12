@@ -23,6 +23,7 @@
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("About", "About", "Home")</li>
                             <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                            <li><a href="http://localhost:16207/#/rooms/asdf">Jabbr Local</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -50,6 +51,7 @@
 
         @Scripts.Render("~/bundles/jquery")
         @RenderSection("scripts", required: false)
+        <!--TODO: get /signalr/hubs wired up with the bundle logic -->
         <script type="text/javascript" src="/signalr/hubs"></script>
         <script type="text/javascript">
             var notifyHub;
@@ -62,10 +64,11 @@
             notifyHub.alternateBroadcast = function (serverSideData) {
                 return console.log('alternate broadcast: ' + serverSideData);
             };
-
+            
             $.connection.hub.start()
                 .done(function() {
                     console.log("Now connected!");
+                    notifyHub.trackMe(window.location.pathname);
                 });
         </script>
     </body>

@@ -37,6 +37,7 @@ namespace RushR
     {
         public static void Start()
         {
+            return;
             while(true)
             {
                 var h = new NotifyHub();
@@ -44,5 +45,17 @@ namespace RushR
                 Thread.Sleep(2000);
             }
         }
+    }
+
+    public static class Tracking
+    {
+        public static List<User> OnlineUsers = new List<User>();
+    }
+
+    public class User
+    {
+        public string Location { get; set; }
+
+        public string SignalrId { get; set; }
     }
 }

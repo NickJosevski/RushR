@@ -12,6 +12,11 @@ namespace RushR
                         "~/Scripts/jquery.signalR-*",
                         "~/signalr/hubs"));
 
+            /* Doesn't work... !
+            bundles.Add(new ScriptBundle("~/signalr")
+                .IncludeDirectory("~/signalr/hubs", "*.js")
+                .Include("~/signalr/hubs"));*/
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include(
                         "~/Scripts/jquery-ui*"));
 
