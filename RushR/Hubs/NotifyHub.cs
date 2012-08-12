@@ -13,7 +13,6 @@ namespace RushR.Hubs
     {
         public void Broadcast(string message)
         {
-            Clients.alternateBroadcast(message);
             GetClients().broadcast(message);
         }
 

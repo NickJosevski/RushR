@@ -49,8 +49,24 @@
         </footer>
 
         @Scripts.Render("~/bundles/jquery")
-        <script type="text/javascript" src="~/Scripts/jquery.signalR-0.5.2.js"></script>
-        <script type="text/javascript" src="/signalr/hubs"></script>
         @RenderSection("scripts", required: false)
+        <script type="text/javascript" src="/signalr/hubs"></script>
+        <script type="text/javascript">
+            var notifyHub;
+            notifyHub = $.connection.notifyHub;
+
+            notifyHub.broadcast = function (serverSideData) {
+                return console.log('signalr broadcast: ' + serverSideData);
+            };
+            
+            notifyHub.alternateBroadcast = function (serverSideData) {
+                return console.log('alternate broadcast: ' + serverSideData);
+            };
+
+            $.connection.hub.start()
+                .done(function() {
+                    console.log("Now connected!");
+                });
+        </script>
     </body>
 </html>
